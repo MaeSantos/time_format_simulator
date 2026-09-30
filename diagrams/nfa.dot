@@ -1,0 +1,46 @@
+digraph NFA {
+    rankdir=LR;
+    node [shape=circle, fontname="Helvetica"];
+    edge [fontname="Helvetica", fontsize=11];
+
+    // Start indicator
+    start [shape=point, width=0.12];
+    start -> q0;
+
+    // Accepting states
+    q7 [shape=doublecircle];
+    q18 [shape=doublecircle];
+
+    // Branch callouts
+    callout24 [shape=box, style=dashed, label="24-Hour: 00:00-23:59"];
+    callout12 [shape=box, style=dashed, label="12-Hour / Standard: 01:00-12:59 (AM or PM)"];
+    callout24 -> q1 [style=dashed, arrowhead=none];
+    callout12 -> q8 [style=dashed, arrowhead=none];
+
+    // Epsilon branching
+    q0 -> q1 [label="ε"];
+    q0 -> q8 [label="ε"];
+
+    // 24-hour branch
+    q1 -> q2 [label="0,1"];
+    q1 -> q3 [label="2"];
+    q2 -> q4 [label="0-9"];
+    q3 -> q4 [label="0-3"];
+    q4 -> q5 [label=":"];
+    q5 -> q6 [label="0-5"];
+    q6 -> q7 [label="0-9"];
+
+    // 12-hour branch
+    q8 -> q9 [label="0"];
+    q8 -> q10 [label="1"];
+    q9 -> q11 [label="1-9"];
+    q10 -> q11 [label="0-2"];
+    q11 -> q12 [label=":"];
+    q12 -> q13 [label="0-5"];
+    q13 -> q14 [label="0-9"];
+    q14 -> q15 [label=""];
+    q15 -> q16 [label="A"];
+    q15 -> q17 [label="P"];
+    q16 -> q18 [label="M"];
+    q17 -> q18 [label="M"];
+}

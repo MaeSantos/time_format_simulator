@@ -1,0 +1,11 @@
+# ---- Core ----
+# GUI framework for the dual-layer validator
+streamlit>=1.36
+
+# ---- Testing ----
+pytest>=8.0
+
+# ---- Optional: render .dot diagrams in the GUI ----
+# Requires the system Graphviz binary installed.
+# Uncomment only if we decide diagrams are worth it in Phase 3-5.
+# graphviz>=0.20
