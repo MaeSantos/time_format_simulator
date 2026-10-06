@@ -1,0 +1,38 @@
+digraph MinimizedDFA {
+    rankdir=LR;
+    node [shape=circle, fontname="Helvetica"];
+    edge [fontname="Helvetica", fontsize=11];
+
+    start [shape=point, width=0.12];
+    start -> M0;
+
+    M10 [shape=doublecircle, label="M10\n(was S10+S15)"];
+    M11 [shape=doublecircle];
+    M13 [label="M13\n(was S13+S14)"];
+
+    M14 [label="M14\n(dead)"];
+    M14 -> M14 [label="all 15 symbols"];
+
+    note [shape=box, style=dashed, label="All undefined transitions go to M14"];
+    note -> M14 [style=dashed, arrowhead=none];
+
+    M0 -> M1 [label="0"];
+    M0 -> M2 [label="1"];
+    M0 -> M3 [label="2"];
+    M1 -> M4 [label="0"];
+    M1 -> M5 [label="1-9"];
+    M2 -> M5 [label="0-2"];
+    M2 -> M4 [label="3-9"];
+    M3 -> M4 [label="0-3"];
+
+    M4 -> M6 [label=":"];
+    M5 -> M7 [label=":"];
+    M6 -> M8 [label="0-5"];
+    M7 -> M9 [label="0-5"];
+    M8 -> M10 [label="0-9"];
+    M9 -> M11 [label="0-9"];
+
+    M11 -> M12 [label="space"];
+    M12 -> M13 [label="A, P"];
+    M13 -> M10 [label="M"];
+}
